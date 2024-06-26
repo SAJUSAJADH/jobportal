@@ -1,12 +1,11 @@
-'use client';
-import React, { useState } from 'react';
-import { Document, Page, pdfjs } from 'react-pdf';
+"use client";
+import React, { useState } from "react";
+import { Document, Page, pdfjs } from "react-pdf";
 
 // Set up worker
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
-const PDFViewer = ({selectedFile, setSelectedFile}) => {
-  
+const PDFViewer = ({ selectedFile, setSelectedFile }) => {
   const [fileData, setFileData] = useState(null);
   const [numPages, setNumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);

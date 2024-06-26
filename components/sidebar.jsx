@@ -51,7 +51,7 @@ function RightSidebar() {
 function LeftSidebar() {
   return (
     <div className="hidden bg-white rounded-md px-4 z-10 shadow-md lg:flex flex-col">
-      <News/>
+      <News />
     </div>
   );
 }

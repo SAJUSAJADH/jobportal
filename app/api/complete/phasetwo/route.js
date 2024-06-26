@@ -15,7 +15,7 @@ export async function POST(request) {
         degree: qualification,
         fieldOfStudy: course,
         startDate: startDate,
-        endDate: enddate
+        endDate: enddate,
       },
     };
     const user = await User.findOneAndUpdate(filter, update, { new: true });

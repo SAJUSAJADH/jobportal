@@ -61,7 +61,7 @@ export const authOptions = {
         token.email = user.email;
         token.role = user.role;
         token.account = user.accountstatus;
-        token.profile = user.profilestatus
+        token.profile = user.profilestatus;
       }
       return token;
     },
@@ -71,7 +71,7 @@ export const authOptions = {
         session.user.name = token.username;
         session.role = token.role;
         session.account = token.account;
-        session.profile = token.profile
+        session.profile = token.profile;
       }
 
       return session;

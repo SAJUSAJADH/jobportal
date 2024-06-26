@@ -85,7 +85,7 @@ const userSchema = new mongoose.Schema({
   },
   profileStatus: {
     type: Boolean,
-    default: false
+    default: false,
   },
   dateCreated: {
     type: Date,

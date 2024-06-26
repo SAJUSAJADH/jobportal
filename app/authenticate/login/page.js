@@ -49,11 +49,13 @@ const PageLogin = ({}) => {
         console.log(error);
         return;
       } else {
-        const profile = await session?.profile
-        !profile ? router.push("/account/profile_creation") : router.push('/account/feed');
+        const profile = await session?.profile;
+        !profile
+          ? router.push("/account/profile_creation")
+          : router.push("/account/feed");
       }
     } catch (error) {
-      toast.error('incorrect username or password')
+      toast.error("incorrect username or password");
       console.log(error);
     }
   }

@@ -11,9 +11,9 @@ import {
 } from "@ant-design/icons";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import React from 'react';
-import Popup from 'reactjs-popup';
-import 'reactjs-popup/dist/index.css';
+import React from "react";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 
 function FeedBar() {
   const { data: session, status } = useSession();
@@ -29,14 +29,15 @@ function FeedBar() {
           width={50}
           height={50}
         />
-        <Popup trigger={
-      <div 
-        
-          className="py-2 bg-gray-300 flex justify-start rounded-xl outline-none border border-gray-400 w-full px-2 "
-> Create post
-      </div>  
-      }
-        position={'center center'}>
+        <Popup
+          trigger={
+            <div className="py-2 bg-gray-300 flex justify-start rounded-xl outline-none border border-gray-400 w-full px-2 ">
+              {" "}
+              Create post
+            </div>
+          }
+          position={"center center"}
+        >
           <div className="">hello</div>
         </Popup>
       </div>

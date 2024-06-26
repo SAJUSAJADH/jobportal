@@ -39,12 +39,12 @@ const PageSignUp = ({}) => {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [passwordVisibility, setPasswordVisibility] = useState(false);
-  const [isLoading, setIsLoading] = useState(false)
-  const [warning, setWarning] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const [warning, setWarning] = useState(false);
 
   async function handleSubmit(event) {
     event.preventDefault();
-    setIsLoading(true)
+    setIsLoading(true);
     try {
       const passwordRegex =
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()\\[\]{}\-_=+|:;'",.<>?/]).{8,}$/;
@@ -64,8 +64,8 @@ const PageSignUp = ({}) => {
 
       const data = await response.json();
       console.log(data);
-      
-      if(data?.message.includes("User Created")){
+
+      if (data?.message.includes("User Created")) {
         const res = await signIn("credentials", {
           username: email,
           password: password,
@@ -73,23 +73,22 @@ const PageSignUp = ({}) => {
         });
         console.log(res);
         if (res.error) {
-          setIsLoading(false)
+          setIsLoading(false);
           console.log(error);
           return;
         } else {
-          setIsLoading(false)
-          if(session?.role === 'employer'){
-            router.push("/account/feed")
-          }else{
-            router.push("/account/profile_creation")
+          setIsLoading(false);
+          if (session?.role === "employer") {
+            router.push("/account/feed");
+          } else {
+            router.push("/account/profile_creation");
           }
-         
         }
       }
     } catch (error) {
-      setIsLoading(false)
+      setIsLoading(false);
       console.log(error);
-      toast.error('try after some time')
+      toast.error("try after some time");
     }
   }
 
@@ -175,7 +174,11 @@ const PageSignUp = ({}) => {
                   value={password}
                   onChange={(event) => setPassword(event.target.value)}
                 />
-                {warning && <p className="text-red-500 text-sm">password must be strong one</p>}
+                {warning && (
+                  <p className="text-red-500 text-sm">
+                    password must be strong one
+                  </p>
+                )}
                 <Image
                   onClick={HandlepasswordVisibility}
                   src={`${passwordVisibility ? "/icons7.png" : "/icons8.png"} `}
@@ -191,9 +194,12 @@ const PageSignUp = ({}) => {
               type="submit"
               onClick={handleSubmit}
             >
-              { isLoading ? <LoadingOutlined className="text-white"/> : 'Continue'}
+              {isLoading ? (
+                <LoadingOutlined className="text-white" />
+              ) : (
+                "Continue"
+              )}
             </ButtonPrimary>
-
           </form>
 
           {/* ==== */}

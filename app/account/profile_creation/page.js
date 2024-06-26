@@ -174,7 +174,14 @@ function Profile_Setup() {
       const qualification = selecteded?.label;
       const course = selectedCourse?.label;
       const college = selectedCollege?.label;
-      if (!qualification || !startDate || !enddate || !course || !college || !session) {
+      if (
+        !qualification ||
+        !startDate ||
+        !enddate ||
+        !course ||
+        !college ||
+        !session
+      ) {
         toast.error("Please Fill All the fields", { icon: "🚫" });
         setIsLoading(false);
         return;
@@ -191,7 +198,7 @@ function Profile_Setup() {
           course,
           college,
           startDate,
-          enddate
+          enddate,
         }),
       });
       const data = await response.json();
@@ -554,10 +561,15 @@ function Profile_Setup() {
                       </div>
 
                       <div className="lg:col-span-2 min-h-[40vh] flex flex-col gap-10 justify-center items-center">
-                        <PDFViewer selectedFile={selectedFile} setSelectedFile={setSelectedFile}/>
+                        <PDFViewer
+                          selectedFile={selectedFile}
+                          setSelectedFile={setSelectedFile}
+                        />
                         <button
                           disabled={isLoading}
-                          onClick={()=>{router.push('/account/feed')}}
+                          onClick={() => {
+                            router.push("/account/feed");
+                          }}
                           className="bg-blue-500 box-shadow text-white font-bold py-2 px-4 rounded"
                         >
                           {isLoading ? <LoadingOutlined /> : "upload"}
