@@ -53,6 +53,11 @@ const PageSignUp = ({}) => {
         setWarning(true);
         return;
       }
+      if(!role){
+        toast.error('Select your purpose')
+        setIsLoading(false)
+        return
+      }
       const response = await fetch("/api/register", {
         cache: "no-store",
         method: "POST",
@@ -63,7 +68,7 @@ const PageSignUp = ({}) => {
       });
 
       const data = await response.json();
-      console.log(data);
+      // console.log(data);
 
       if (data?.message.includes("User Created")) {
         const res = await signIn("credentials", {
@@ -79,7 +84,7 @@ const PageSignUp = ({}) => {
         } else {
           setIsLoading(false);
           if (session?.role === "employer") {
-            router.push("/account/feed");
+            router.push("/account/feeds");
           } else {
             router.push("/account/profile_creation");
           }

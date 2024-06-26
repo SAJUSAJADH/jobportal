@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import Input from "@/shared/Input";
 import ButtonPrimary from "@/shared/ButtonPrimary";
 import toast from "react-hot-toast";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const loginSocials = [
   {
@@ -35,9 +36,11 @@ const PageLogin = ({}) => {
   const [password, setPassword] = useState("");
   const { data: session, status } = useSession();
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [ isLoading, setIsLoading ] = useState(false);
 
   async function handleLogin(event) {
     event.preventDefault();
+    isLoading(true)
     try {
       const res = await signIn("credentials", {
         username: email,
@@ -47,15 +50,24 @@ const PageLogin = ({}) => {
       console.log(res);
       if (res.error) {
         console.log(error);
+        setIsLoading(false)
         return;
       } else {
         const profile = await session?.profile;
-        !profile
-          ? router.push("/account/profile_creation")
-          : router.push("/account/feed");
+        const role = await session?.role;
+        if(role === 'employer'){
+          router.push('/account/feeds')
+        }
+        if(role === 'candidate' && !profile){
+          router.push('/account/profile_creation')
+        }
+        if(role === 'candidate' && profile){
+          router.push('/account/feeds')
+        }
       }
     } catch (error) {
-      toast.error("incorrect username or password");
+      setIsLoading(false)
+      toast("incorrect username or password");
       console.log(error);
     }
   }
@@ -138,8 +150,9 @@ const PageLogin = ({}) => {
               className="bg-blue-600"
               type="submit"
               onClick={handleLogin}
+              disabled={isLoading}
             >
-              Continue
+              {isLoading ? <LoadingOutlined/> : 'Continue'}
             </ButtonPrimary>
           </form>
 

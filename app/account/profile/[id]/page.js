@@ -1,3 +1,4 @@
+import Accountbar from "@/components/Accountbar";
 import Feed from "@/components/feed/Feed";
 import LeftMenu from "@/components/leftMenu/LeftMenu";
 import RightMenu from "@/components/rightMenu/RightMenu";
@@ -5,6 +6,10 @@ import Image from "next/image";
 
 const ProfilePage = () => {
   return (
+    <>
+    <div className="w-full bg-white px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
+        <Accountbar />
+      </div>
     <div className=" bg-slate-100 px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
     <div className="flex gap-6 pt-6">
       <div className="hidden xl:block w-[20%]">
@@ -54,6 +59,7 @@ const ProfilePage = () => {
       </div>
     </div>
     </div>
+    </>
   );
 };
 
